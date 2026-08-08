@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nūr Academy — Live Quran, Arabic & Islamic classes for kids</title>
+<meta name="description" content="Nūr Academy offers live one-on-one Quran, Arabic and Islamic Studies classes for children — gentle certified teachers, joyful lessons, learned from home." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#FCF8EE;
+    --cream-2:#F7EFDD;
+    --sand:#F1E6CE;
+    --ink:#123632;
+    --ink-soft:#3E5A55;
+    --teal:#0E5A50;
+    --teal-deep:#093F38;
+    --turq:#17A79B;
+    --turq-soft:#8FD0C7;
+    --gold:#D8A43A;
+    --gold-deep:#B9852A;
+    --line:rgba(14,90,80,.16);
+    --shadow:0 18px 50px -22px rgba(9,63,56,.45);
+    --shadow-soft:0 10px 30px -18px rgba(9,63,56,.4);
+    --r:22px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Mulish",system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{margin:0;line-height:1.05;font-weight:400;}
+  .display{font-family:"Lalezar",system-ui,cursive;font-weight:400;letter-spacing:.4px;}
+  .ar{font-family:"Amiri",serif;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  section{position:relative;}
+
+  .wrap{width:min(1160px,92vw);margin-inline:auto;}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.5em;
+    font-weight:700;font-size:1rem;
+    padding:.85em 1.5em;border-radius:999px;
+    border:2px solid transparent;cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    text-align:center;line-height:1.1;
+  }
+  .btn-gold{background:var(--gold);color:#3a2a06;box-shadow:0 12px 24px -12px rgba(184,133,42,.9);}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(184,133,42,.95);}
+  .btn-ghost{background:transparent;border-color:var(--turq);color:var(--teal);}
+  .btn-ghost:hover{background:rgba(23,167,155,.12);transform:translateY(-2px);}
+  .btn-cream{background:var(--cream);color:var(--teal-deep);}
+  .btn-cream:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+  .btn-lg{font-size:1.08rem;padding:1em 1.8em;}
+
+  :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(252,248,238,.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding:.7rem 0;}
+  .brand{display:flex;align-items:center;gap:.65rem;}
+  .brand .mark{width:40px;height:40px;flex:none;}
+  .brand b{font-family:"Lalezar";font-size:1.5rem;color:var(--teal-deep);letter-spacing:.5px;line-height:1;}
+  .brand span{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--turq);font-weight:700;margin-top:2px;}
+  .links{display:flex;align-items:center;gap:1.6rem;}
+  .links a.nl{font-weight:600;font-size:.98rem;color:var(--ink-soft);position:relative;padding:.2rem 0;}
+  .links a.nl::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:2px;background:var(--gold);transition:right .25s ease;}
+  .links a.nl:hover{color:var(--teal-deep);}
+  .links a.nl:hover::after{right:0;}
+  .menu-btn{display:none;background:none;border:0;cursor:pointer;padding:.3rem;}
+  .menu-btn svg{width:30px;height:30px;stroke:var(--teal-deep);}
+
+  /* ---------- ambient star field ---------- */
+  .starfield{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(120% 90% at 88% -10%, rgba(23,167,155,.16), transparent 55%),
+      radial-gradient(90% 70% at 0% 110%, rgba(216,164,58,.14), transparent 55%),
+      var(--cream);
+    padding:clamp(2rem,5vw,4.5rem) 0 clamp(3rem,6vw,5rem);
+    overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;position:relative;z-index:2;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.6rem;
+    background:rgba(14,90,80,.07);border:1px solid var(--line);
+    padding:.4rem .9rem;border-radius:999px;font-weight:700;
+    color:var(--teal);font-size:.85rem;letter-spacing:.02em;margin-bottom:1.3rem;
+  }
+  .eyebrow .ar{font-size:1.15rem;color:var(--gold-deep);line-height:1;}
+  .hero h1{
+    font-family:"Lalezar";
+    font-size:clamp(2.9rem,7vw,5rem);
+    color:var(--teal-deep);
+    letter-spacing:.5px;
+    margin-bottom:1rem;
+  }
+  .hero h1 em{font-style:normal;color:var(--gold-deep);position:relative;white-space:nowrap;}
+  .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.14em;background:var(--turq-soft);border-radius:4px;opacity:.55;z-index:-1;}
+  .hero p.lead{font-size:clamp(1.05rem,1.6vw,1.22rem);color:var(--ink-soft);max-width:34ch;margin:0 0 1.8rem;}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:1.8rem;}
+  .trust{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;font-size:.92rem;color:var(--ink-soft);}
+  .trust b{color:var(--teal-deep);font-family:"Lalezar";font-size:1.35rem;font-weight:400;display:block;line-height:1;}
+  .trust .stars{color:var(--gold);letter-spacing:2px;}
+  .trust-item{display:flex;flex-direction:column;gap:.15rem;}
+
+  /* hero illustration */
+  .hero-art{position:relative;filter:drop-shadow(0 30px 45px rgba(9,63,56,.28));}
+  .hero-art .float{animation:float 6s ease-in-out infinite;}
+
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  .hero .anim{opacity:0;animation:rise .8s ease forwards;}
+  .hero .anim.d1{animation-delay:.05s}
+  .hero .anim.d2{animation-delay:.2s}
+  .hero .anim.d3{animation-delay:.35s}
+  .hero .anim.d4{animation-delay:.5s}
+  .hero .anim.d5{animation-delay:.65s}
+
+  /* ---------- iqra band ---------- */
+  .iqra{background:var(--teal-deep);color:var(--cream);padding:clamp(2.4rem,5vw,3.6rem) 0;overflow:hidden;}
+  .iqra .wrap{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.4rem,4vw,3rem);align-items:center;position:relative;z-index:2;}
+  .iqra .big-ar{font-family:"Amiri";font-size:clamp(4rem,11vw,7.5rem);color:var(--gold);line-height:.9;text-shadow:0 6px 24px rgba(0,0,0,.25);}
+  .iqra h2{font-family:"Lalezar";font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;margin-bottom:.5rem;}
+  .iqra p{color:rgba(252,248,238,.82);max-width:52ch;margin:0;}
+  .iqra .starfield{opacity:.22;}
+
+  /* ---------- section shell ---------- */
+  .sec{padding:clamp(3.5rem,7vw,6rem) 0;}
+  .sec-head{max-width:60ch;margin-bottom:clamp(2rem,4vw,3rem);}
+  .kicker{display:inline-block;font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;color:var(--turq);margin-bottom:.8rem;}
+  .sec-head h2{font-family:"Lalezar";font-size:clamp(2.1rem,4.4vw,3.2rem);color:var(--teal-deep);letter-spacing:.5px;margin-bottom:.7rem;}
+  .sec-head p{color:var(--ink-soft);font-size:1.08rem;margin:0;}
+
+  /* ---------- programs ---------- */
+  .prog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;}
+  .card{
+    background:#fff;border:1px solid var(--line);
+    border-radius:var(--r);overflow:hidden;
+    box-shadow:var(--shadow-soft);
+    transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:rgba(23,167,155,.4);}
+  .card .top{
+    height:120px;display:grid;place-items:center;
+    border-radius:110px 110px 8px 8px;
+    margin:10px 10px 0;position:relative;overflow:hidden;
+  }
+  .card .top svg{width:60px;height:60px;position:relative;z-index:2;}
+  .card .top::before{content:"";position:absolute;inset:0;opacity:.9;}
+  .p1 .top{background:linear-gradient(160deg,#15938a,#0e6a60);}
+  .p2 .top{background:linear-gradient(160deg,#d8a43a,#b9852a);}
+  .p3 .top{background:linear-gradient(160deg,#1f7f9c,#125e77);}
+  .p4 .top{background:linear-gradient(160deg,#2b8f5f,#1c6b45);}
+  .card .body{padding:1.15rem 1.25rem 1.4rem;flex:1;display:flex;flex-direction:column;}
+  .card h3{font-family:"Lalezar";font-size:1.42rem;color:var(--teal-deep);margin-bottom:.4rem;letter-spacing:.4px;}
+  .card p{font-size:.96rem;color:var(--ink-soft);margin:0 0 1rem;flex:1;}
+  .card .tag{font-weight:700;font-size:.85rem;color:var(--turq);display:inline-flex;align-items:center;gap:.35rem;}
+  .card .tag svg{width:16px;height:16px;}
+
+  /* ---------- steps ---------- */
+  .steps-sec{background:var(--cream-2);}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;counter-reset:step;}
+  .step{position:relative;padding:1.6rem 1.2rem 1.4rem;background:#fff;border-radius:var(--r);border:1px solid var(--line);}
+  .step .num{
+    width:52px;height:52px;border-radius:14px;
+    display:grid;place-items:center;margin-bottom:1rem;
+    font-family:"Lalezar";font-size:1.7rem;color:#3a2a06;
+    background:var(--gold);box-shadow:0 8px 18px -8px rgba(184,133,42,.9);
+  }
+  .step:nth-child(2) .num{background:var(--turq);color:#04302b;}
+  .step:nth-child(3) .num{background:var(--teal);color:#eafff9;}
+  .step:nth-child(4) .num{background:var(--gold-deep);color:#fff5df;}
+  .step h3{font-family:"Lalezar";font-size:1.3rem;color:var(--teal-deep);margin-bottom:.35rem;letter-spacing:.4px;}
+  .step p{margin:0;font-size:.95rem;color:var(--ink-soft);}
+
+  /* ---------- features ---------- */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem 2rem;}
+  .feat{display:flex;gap:1rem;align-items:flex-start;}
+  .feat .ic{width:48px;height:48px;flex:none;border-radius:14px;background:rgba(23,167,155,.12);display:grid;place-items:center;}
+  .feat .ic svg{width:26px;height:26px;stroke:var(--teal);}
+  .feat h3{font-size:1.12rem;font-family:"Mulish";font-weight:800;color:var(--teal-deep);margin-bottom:.2rem;}
+  .feat p{margin:0;font-size:.95rem;color:var(--ink-soft);}
+
+  /* ---------- teachers band ---------- */
+  .teach{background:linear-gradient(155deg,var(--teal),var(--teal-deep));color:var(--cream);overflow:hidden;}
+  .teach .starfield{opacity:.16;}
+  .teach .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,4vw,3.5rem);align-items:center;}
+  .teach .kicker{color:var(--gold);}
+  .teach h2{font-family:"Lalezar";font-size:clamp(2rem,4vw,2.9rem);color:#fff;margin-bottom:.9rem;letter-spacing:.5px;}
+  .teach p.body{color:rgba(252,248,238,.85);font-size:1.05rem;margin:0 0 1.5rem;}
+  .teach ul{list-style:none;margin:0 0 0;padding:0;display:grid;gap:.7rem;}
+  .teach li{display:flex;gap:.7rem;align-items:flex-start;color:rgba(252,248,238,.92);font-weight:600;}
+  .teach li svg{width:22px;height:22px;flex:none;margin-top:2px;stroke:var(--gold);}
+  .teach-art{display:grid;place-items:center;}
+
+  /* ---------- pricing ---------- */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;align-items:stretch;}
+  .plan{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.8rem 1.6rem;display:flex;flex-direction:column;position:relative;box-shadow:var(--shadow-soft);}
+  .plan.featured{border:2px solid var(--gold);box-shadow:var(--shadow);}
+  .plan .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#3a2a06;font-weight:800;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .9rem;border-radius:999px;}
+  .plan .pico{width:46px;height:46px;margin-bottom:.9rem;}
+  .plan h3{font-family:"Lalezar";font-size:1.55rem;color:var(--teal-deep);letter-spacing:.4px;}
+  .plan .freq{color:var(--ink-soft);font-size:.95rem;margin-bottom:1rem;}
+  .plan .price{font-family:"Lalezar";font-size:2.7rem;color:var(--teal-deep);line-height:1;}
+  .plan .price small{font-family:"Mulish";font-size:.95rem;color:var(--ink-soft);font-weight:600;}
+  .plan ul{list-style:none;margin:1.2rem 0 1.6rem;padding:0;display:grid;gap:.6rem;flex:1;}
+  .plan li{display:flex;gap:.55rem;font-size:.95rem;color:var(--ink);align-items:flex-start;}
+  .plan li svg{width:18px;height:18px;flex:none;margin-top:3px;stroke:var(--turq);}
+  .price-note{text-align:center;margin-top:1.4rem;color:var(--ink-soft);font-size:.92rem;}
+
+  /* ---------- testimonials ---------- */
+  .quotes-sec{background:var(--cream-2);}
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+  .quote{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.6rem 1.5rem;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;}
+  .quote .mk{font-family:"Amiri";font-size:3rem;line-height:.6;color:var(--turq-soft);height:.6em;}
+  .quote p{color:var(--ink);font-size:1rem;margin:.6rem 0 1.2rem;flex:1;}
+  .quote .who{display:flex;align-items:center;gap:.7rem;}
+  .quote .av{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:"Lalezar";color:#fff;font-size:1.2rem;}
+  .quote b{display:block;color:var(--teal-deep);font-size:.98rem;}
+  .quote span{color:var(--ink-soft);font-size:.85rem;}
+  .quote .stars{color:var(--gold);letter-spacing:2px;font-size:.9rem;margin-bottom:.2rem;}
+
+  /* ---------- final cta ---------- */
+  .cta{position:relative;overflow:hidden;background:var(--teal-deep);color:var(--cream);padding:clamp(3.5rem,7vw,6rem) 0;text-align:center;}
+  .cta .starfield{opacity:.2;}
+  .cta .wrap{position:relative;z-index:2;}
+  .cta .ar{font-size:1.4rem;color:var(--gold);margin-bottom:.6rem;}
+  .cta h2{font-family:"Lalezar";font-size:clamp(2.2rem,5vw,3.6rem);color:#fff;letter-spacing:.5px;margin-bottom:.8rem;}
+  .cta p{color:rgba(252,248,238,.82);font-size:1.1rem;max-width:46ch;margin:0 auto 2rem;}
+  .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+  /* ---------- footer ---------- */
+  footer{background:#07322c;color:rgba(252,248,238,.7);padding:clamp(2.5rem,5vw,3.5rem) 0 2rem;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem;}
+  footer .brand b{color:#fff;}
+  footer .brand span{color:var(--turq-soft);}
+  footer p.blurb{margin:1rem 0 0;font-size:.92rem;max-width:32ch;}
+  .foot-col h4{color:#fff;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;margin:0 0 1rem;font-weight:800;}
+  .foot-col a{display:block;padding:.28rem 0;font-size:.95rem;color:rgba(252,248,238,.72);}
+  .foot-col a:hover{color:var(--gold);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:1.4rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.86rem;}
+  .foot-bottom .ar{color:var(--gold);}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:960px){
+    .prog-grid{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:repeat(2,1fr);}
+    .feat-grid{grid-template-columns:repeat(2,1fr);}
+    .price-grid{grid-template-columns:1fr;max-width:460px;margin-inline:auto;}
+    .quotes{grid-template-columns:1fr;}
+    .teach .wrap{grid-template-columns:1fr;}
+    .teach-art{order:-1;max-width:320px;}
+    .hero-grid{grid-template-columns:1fr;text-align:center;}
+    .hero p.lead{margin-inline:auto;}
+    .hero-cta,.trust{justify-content:center;}
+    .hero-art{max-width:360px;margin:0 auto;}
+    .iqra .wrap{grid-template-columns:1fr;text-align:center;justify-items:center;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .links{position:fixed;inset:0 0 auto 0;top:64px;flex-direction:column;align-items:stretch;gap:0;background:var(--cream);border-bottom:1px solid var(--line);padding:.5rem 6vw 1.2rem;transform:translateY(-140%);transition:transform .3s ease;box-shadow:var(--shadow);}
+    .links.open{transform:translateY(0);}
+    .links a.nl{padding:.8rem 0;border-bottom:1px solid var(--line);}
+    .links .btn{margin-top:.8rem;justify-content:center;}
+    .menu-btn{display:block;}
+  }
+  @media(max-width:560px){
+    .prog-grid,.steps,.feat-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .trust{gap:1rem;}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none !important;scroll-behavior:auto !important;}
+    .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+    .hero .anim{opacity:1 !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SVG DEFS (icons + star symbol) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 8-point girih star -->
+    <symbol id="star8" viewBox="-50 -50 100 100">
+      <polygon id="star8-poly" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Nūr Academy home">
+      <svg class="mark" viewBox="-50 -50 100 100" aria-hidden="true">
+        <circle r="48" fill="#0E5A50"/>
+        <use href="#star8" width="100" height="100" x="-50" y="-50" color="#D8A43A"/>
+        <use href="#star8" width="54" height="54" x="-27" y="-27" color="#0E5A50"/>
+      </svg>
+      <span style="display:block">
+        <b>Nūr Academy</b>
+        <span>Little lights of learning</span>
+      </span>
+    </a>
+    <nav class="links" id="links">
+      <a class="nl" href="#programs">Programs</a>
+      <a class="nl" href="#how">How it works</a>
+      <a class="nl" href="#teachers">Teachers</a>
+      <a class="nl" href="#pricing">Pricing</a>
+      <a class="btn btn-gold" href="#trial">Book a free trial</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="starfield" data-star="hero"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow anim d1"><span class="ar">بِسْمِ ٱللَّٰه</span> · In the name of Allah</span>
+      <h1 class="anim d2">Raise a <em>little light.</em></h1>
+      <p class="lead anim d3">Live, one-on-one Quran, Arabic and Islamic classes for children — gentle certified teachers and joyful lessons, right from the comfort of home.</p>
+      <div class="hero-cta anim d4">
+        <a class="btn btn-gold btn-lg" href="#trial">Book a free trial</a>
+        <a class="btn btn-ghost btn-lg" href="#programs">See our programs</a>
+      </div>
+      <div class="trust anim d5">
+        <div class="trust-item"><b>6,000+</b> happy families</div>
+        <div class="trust-item"><b>30+</b> countries</div>
+        <div class="trust-item"><span class="stars">★★★★★</span> 4.9 average rating</div>
+      </div>
+    </div>
+
+    <!-- Hero illustration: arch-framed geometric scene -->
+    <div class="hero-art anim d3" aria-hidden="true">
+      <svg viewBox="0 0 320 400" width="100%">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0E5A50"/>
+            <stop offset="1" stop-color="#093F38"/>
+          </linearGradient>
+          <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E7B94E"/>
+            <stop offset="1" stop-color="#B9852A"/>
+          </linearGradient>
+          <clipPath id="archClip">
+            <path d="M20,392 L20,150 Q55,52 160,26 Q265,52 300,150 L300,392 Z"/>
+          </clipPath>
+        </defs>
+
+        <!-- arch frame -->
+        <path d="M8,398 L8,150 Q48,40 160,12 Q272,40 312,150 L312,398 Z" fill="url(#frame)"/>
+        <!-- inner sky -->
+        <g clip-path="url(#archClip)">
+          <rect x="20" y="20" width="280" height="380" fill="url(#sky)"/>
+          <!-- ambient stars inside -->
+          <g fill="#FCF8EE" opacity=".85">
+            <circle cx="70" cy="90" r="2"/><circle cx="250" cy="80" r="2.4"/>
+            <circle cx="120" cy="60" r="1.6"/><circle cx="205" cy="120" r="1.8"/>
+            <circle cx="60" cy="150" r="1.6"/><circle cx="270" cy="160" r="1.6"/>
+          </g>
+          <!-- crescent moon -->
+          <g transform="translate(232,96)">
+            <circle r="30" fill="#F2D98A"/>
+            <circle cx="12" cy="-6" r="26" fill="#0E5A50"/>
+          </g>
+          <!-- hanging lantern -->
+          <g class="float" transform="translate(90,60)">
+            <line x1="0" y1="-42" x2="0" y2="-6" stroke="#E7B94E" stroke-width="2"/>
+            <path d="M-14,-6 L14,-6 L18,6 L-18,6 Z" fill="#E7B94E"/>
+            <rect x="-15" y="6" width="30" height="34" rx="5" fill="#D8A43A"/>
+            <path d="M-15,6 L15,6 L15,40 L-15,40 Z" fill="none" stroke="#8a5f10" stroke-width="1.4"/>
+            <line x1="-5" y1="6" x2="-5" y2="40" stroke="#8a5f10" stroke-width="1"/>
+            <line x1="5" y1="6" x2="5" y2="40" stroke="#8a5f10" stroke-width="1"/>
+            <path d="M-11,40 L11,40 L7,48 L-7,48 Z" fill="#E7B94E"/>
+            <circle cy="23" r="7" fill="#FBE7B0" opacity=".9"/>
+          </g>
+          <!-- rotating small star -->
+          <use href="#star8" x="188" y="188" width="34" height="34" color="#E7B94E" opacity=".9" style="transform-box:fill-box;transform-origin:center;animation:spin 26s linear infinite"/>
+          <!-- open book with glow -->
+          <g transform="translate(160,300)">
+            <ellipse cx="0" cy="8" rx="96" ry="20" fill="#000" opacity=".18"/>
+            <path d="M0,-6 C-30,-26 -78,-22 -92,-14 L-92,44 C-78,36 -30,40 0,58 Z" fill="#FCF8EE"/>
+            <path d="M0,-6 C30,-26 78,-22 92,-14 L92,44 C78,36 30,40 0,58 Z" fill="#F1E6CE"/>
+            <path d="M0,-6 L0,58" stroke="#B9852A" stroke-width="2"/>
+            <g stroke="#17A79B" stroke-width="2" opacity=".7">
+              <line x1="-74" y1="-4" x2="-16" y2="6"/><line x1="-74" y1="8" x2="-16" y2="18"/><line x1="-74" y1="20" x2="-16" y2="30"/>
+              <line x1="16" y1="6" x2="74" y2="-4"/><line x1="16" y1="18" x2="74" y2="8"/><line x1="16" y1="30" x2="74" y2="20"/>
+            </g>
+            <!-- rays -->
+            <g stroke="#F2D98A" stroke-width="2.4" stroke-linecap="round" opacity=".8">
+              <line x1="0" y1="-14" x2="0" y2="-34"/>
+              <line x1="-20" y1="-10" x2="-34" y2="-26"/>
+              <line x1="20" y1="-10" x2="34" y2="-26"/>
+            </g>
+          </g>
+        </g>
+        <!-- keystone star on the arch -->
+        <use href="#star8" x="146" y="6" width="28" height="28" color="#093F38"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IQRA BAND ============ -->
+<section class="iqra">
+  <div class="starfield" data-star="dark"></div>
+  <div class="wrap">
+    <div class="big-ar">ٱقْرَأْ</div>
+    <div>
+      <h2>Iqra — “Read.”</h2>
+      <p>The very first word revealed of the Qur’an was a call to read. At Nūr Academy, every child begins with that same invitation — to read, to understand, and to love learning.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="sec" id="programs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">What we teach</span>
+      <h2>Programs made for young learners</h2>
+      <p>Four gentle paths, each shaped around your child’s pace, age and personality — never rushed, always encouraging.</p>
+    </div>
+    <div class="prog-grid">
+
+      <article class="card p1 reveal">
+        <div class="top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h11v16H6a2 2 0 0 0-2 2z"/><path d="M17 3h1a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2h-1"/><path d="M8 8h6M8 11h5"/></svg>
+        </div>
+        <div class="body">
+          <h3>Quran Reading</h3>
+          <p>From the very first letters through Noorani Qaida to confident, beautiful recitation with correct Tajweed.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l4 4L19 6"/></svg> Ages 4–15 · Beginner welcome</span>
+        </div>
+      </article>
+
+      <article class="card p2 reveal">
+        <div class="top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.2.9-5.5-4-3.9 5.5-.8z"/></svg>
+        </div>
+        <div class="body">
+          <h3>Hifz</h3>
+          <p>Memorise the Qur’an with a caring, realistic plan and steady daily revision that truly sticks.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l4 4L19 6"/></svg> Structured revision cycles</span>
+        </div>
+      </article>
+
+      <article class="card p3 reveal">
+        <div class="top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 5v14M4 12h8"/><path d="M14 19c2-4 2-8 0-12"/><path d="M20 19c-2-4-2-8 0-12"/></svg>
+        </div>
+        <div class="body">
+          <h3>Arabic Language</h3>
+          <p>Read, write and speak Arabic through games, songs and stories — the language of the Qur’an, made playful.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l4 4L19 6"/></svg> Speaking & writing</span>
+        </div>
+      </article>
+
+      <article class="card p4 reveal">
+        <div class="top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z"/></svg>
+        </div>
+        <div class="body">
+          <h3>Islamic Studies</h3>
+          <p>Stories of the Prophets, everyday du‘ā’s, kind manners and the values that shape a good heart.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l4 4L19 6"/></svg> Seerah · Akhlaq · Du‘ā’</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="sec steps-sec" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">How it works</span>
+      <h2>Getting started is simple</h2>
+      <p>Four small steps from “curious” to your child’s first joyful lesson.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">1</div><h3>Book a free trial</h3><p>Pick a time that suits you. No card required, no pressure.</p></div>
+      <div class="step reveal"><div class="num">2</div><h3>Meet your teacher</h3><p>We match your child with a patient, certified teacher they’ll love.</p></div>
+      <div class="step reveal"><div class="num">3</div><h3>Get a personal plan</h3><p>A tailored path based on your child’s level and your goals.</p></div>
+      <div class="step reveal"><div class="num">4</div><h3>Learn every week</h3><p>Regular live classes, gentle progress, and updates for you.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Why parents choose Nūr</span>
+      <h2>Care you can trust, learning they enjoy</h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><div><h3>Certified teachers</h3><p>Qualified instructors, many with Ijāzah, trained to teach children gently.</p></div></div>
+
+      <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11a4 4 0 1 0-8 0"/><circle cx="12" cy="7" r="0"/><path d="M12 3a4 4 0 0 1 0 8 4 4 0 0 1 0-8z"/><path d="M4 21c0-3 3.5-5 8-5s8 2 8 5"/></svg></div><div><h3>Male or female teacher</h3><p>Choose the teacher your family is most comfortable with.</p></div></div>
+
+      <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h3>Flexible timing</h3><p>Class times that fit school, sleep and every time zone.</p></div></div>
+
+      <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></div><div><h3>One-on-one attention</h3><p>Private lessons mean your child is truly seen and never left behind.</p></div></div>
+
+      <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H4z"/><path d="M8 20h8M9 16v4M15 16v4"/><path d="M8 9l2.5 2.5L16 6"/></svg></div><div><h3>Progress reports</h3><p>Clear updates so you always know how your child is growing.</p></div></div>
+
+      <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg></div><div><h3>Safe classroom</h3><p>A calm, private, kid-friendly space parents can trust.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEACHERS BAND ============ -->
+<section class="sec teach" id="teachers">
+  <div class="starfield" data-star="dark"></div>
+  <div class="wrap">
+    <div>
+      <span class="kicker">Our teachers</span>
+      <h2>Kind hearts, patient voices</h2>
+      <p class="body">Children learn best from people who make them feel safe. Every Nūr teacher is chosen not only for their knowledge, but for their warmth — the patience to repeat a letter ten times with a smile, and the joy that makes a child want to come back tomorrow.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Interviewed, vetted and trained for teaching kids</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Fluent teaching in English, Arabic & Urdu</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Encouraging, screen-friendly and never strict</li>
+      </ul>
+    </div>
+    <div class="teach-art" aria-hidden="true">
+      <svg viewBox="-110 -110 220 220" width="100%">
+        <circle r="104" fill="none" stroke="rgba(216,164,58,.35)" stroke-width="2"/>
+        <circle r="86" fill="rgba(23,167,155,.14)"/>
+        <use href="#star8" x="-86" y="-86" width="172" height="172" color="rgba(216,164,58,.9)" style="transform-box:fill-box;transform-origin:center;animation:spin 40s linear infinite"/>
+        <use href="#star8" x="-48" y="-48" width="96" height="96" color="#0E5A50"/>
+        <use href="#star8" x="-24" y="-24" width="48" height="48" color="#E7B94E"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-inline:auto;text-align:center;">
+      <span class="kicker">Simple pricing</span>
+      <h2>Plans that grow with your child</h2>
+      <p>Pick a rhythm of classes per week. Cancel or change anytime — no long contracts.</p>
+    </div>
+    <div class="price-grid">
+
+      <div class="plan reveal">
+        <svg class="pico" viewBox="-50 -50 100 100"><use href="#star8" x="-50" y="-50" width="100" height="100" color="#17A79B"/></svg>
+        <h3>Seedling</h3>
+        <div class="freq">2 classes / week</div>
+        <div class="price">$39<small> / month</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Two 1-on-1 live classes weekly</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Any single program</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Monthly progress report</li>
+        </ul>
+        <a class="btn btn-ghost" href="#trial">Start free trial</a>
+      </div>
+
+      <div class="plan featured reveal">
+        <span class="badge">Most loved</span>
+        <svg class="pico" viewBox="-50 -50 100 100"><use href="#star8" x="-50" y="-50" width="100" height="100" color="#D8A43A"/></svg>
+        <h3>Sapling</h3>
+        <div class="freq">3 classes / week</div>
+        <div class="price">$54<small> / month</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Three 1-on-1 live classes weekly</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Mix two programs</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Bi-weekly reports & parent check-ins</li>
+        </ul>
+        <a class="btn btn-gold" href="#trial">Start free trial</a>
+      </div>
+
+      <div class="plan reveal">
+        <svg class="pico" viewBox="-50 -50 100 100"><use href="#star8" x="-50" y="-50" width="100" height="100" color="#0E5A50"/></svg>
+        <h3>Cedar</h3>
+        <div class="freq">5 classes / week</div>
+        <div class="price">$85<small> / month</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Five 1-on-1 live classes weekly</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> All programs, ideal for Hifz</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Weekly reports & priority scheduling</li>
+        </ul>
+        <a class="btn btn-ghost" href="#trial">Start free trial</a>
+      </div>
+
+    </div>
+    <p class="price-note">Sibling discount available · One free trial class for every new student.</p>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="sec quotes-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">From our families</span>
+      <h2>Loved by parents & their kids</h2>
+    </div>
+    <div class="quotes">
+      <figure class="quote reveal">
+        <div class="mk">”</div>
+        <div class="stars">★★★★★</div>
+        <p>My daughter used to dread her lessons. Now she reminds <em>me</em> when her Nūr class is starting. Her teacher is so patient and kind.</p>
+        <figcaption class="who">
+          <span class="av" style="background:#17A79B">A</span>
+          <span><b>Aisha R.</b><span>Mum of two · London, UK</span></span>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal">
+        <div class="mk">”</div>
+        <div class="stars">★★★★★</div>
+        <p>We tried three academies before this. The one-on-one attention and the weekly updates make all the difference. Highly recommend.</p>
+        <figcaption class="who">
+          <span class="av" style="background:#D8A43A;color:#3a2a06">Y</span>
+          <span><b>Yusuf K.</b><span>Dad · Toronto, Canada</span></span>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal">
+        <div class="mk">”</div>
+        <div class="stars">★★★★★</div>
+        <p>My son finished Noorani Qaida and started reading the Qur’an with real confidence — all from our living room. Alhamdulillah.</p>
+        <figcaption class="who">
+          <span class="av" style="background:#0E5A50">F</span>
+          <span><b>Fatima S.</b><span>Mum · Sydney, Australia</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="cta" id="trial">
+  <div class="starfield" data-star="dark"></div>
+  <div class="wrap">
+    <div class="ar">ٱقْرَأْ بِٱسْمِ رَبِّكَ</div>
+    <h2>Give your child their first lesson, free.</h2>
+    <p>Book a no-pressure trial class today and watch a little light begin to shine.</p>
+    <div class="cta-btns">
+      <a class="btn btn-gold btn-lg" href="#top">Book a free trial</a>
+      <a class="btn btn-cream btn-lg" href="#programs">Explore programs</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top">
+          <svg class="mark" viewBox="-50 -50 100 100" aria-hidden="true">
+            <circle r="48" fill="#0b463f"/>
+            <use href="#star8" width="100" height="100" x="-50" y="-50" color="#D8A43A"/>
+            <use href="#star8" width="54" height="54" x="-27" y="-27" color="#0b463f"/>
+          </svg>
+          <span style="display:block"><b>Nūr Academy</b><span>Little lights of learning</span></span>
+        </a>
+        <p class="blurb">Live online Quran, Arabic and Islamic classes for children — taught with knowledge, patience and love.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Programs</h4>
+        <a href="#programs">Quran Reading</a>
+        <a href="#programs">Hifz</a>
+        <a href="#programs">Arabic Language</a>
+        <a href="#programs">Islamic Studies</a>
+      </div>
+      <div class="foot-col">
+        <h4>Academy</h4>
+        <a href="#how">How it works</a>
+        <a href="#teachers">Our teachers</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#trial">Free trial</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:salam@nuracademy.example">salam@nuracademy.example</a>
+        <a href="#top">WhatsApp support</a>
+        <a href="#top">Help centre</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Nūr Academy. Made with care for young learners.</span>
+      <span class="ar">وَقُل رَّبِّ زِدْنِي عِلْمًا</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- build 8-point girih star polygon ---- */
+  function starPoints(R, innerRatio){
+    var pts = [], r = R*innerRatio, n = 8;
+    for(var i=0;i<n*2;i++){
+      var ang = (Math.PI/n)*i - Math.PI/2;
+      var rad = (i%2===0)? R : r;
+      pts.push((Math.cos(ang)*rad).toFixed(2)+","+(Math.sin(ang)*rad).toFixed(2));
+    }
+    return pts.join(" ");
+  }
+  var poly = document.getElementById("star8-poly");
+  if(poly){ poly.setAttribute("points", starPoints(48, 0.545)); }
+
+  /* ---- ambient tessellating star field ---- */
+  function buildField(el, opts){
+    var T = 150, Rs = 40, Rd = 20;
+    var stroke = opts.stroke, fill = opts.fill;
+    var sp = starPoints(Rs, 0.545);
+    var dp = starPoints(Rd, 0.62);
+    var svg =
+      '<svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'+
+      '<defs><pattern id="'+opts.id+'" width="'+T+'" height="'+T+'" patternUnits="userSpaceOnUse" patternTransform="rotate(0)">'+
+        starGroup(sp,dp,T,fill,stroke)+
+      '</pattern></defs>'+
+      '<rect width="100%" height="100%" fill="url(#'+opts.id+')"/></svg>';
+    el.innerHTML = svg;
+  }
+  function starGroup(sp,dp,T,fill,stroke){
+    function star(cx,cy,pts,rot){
+      return '<polygon points="'+pts+'" transform="translate('+cx+','+cy+') rotate('+(rot||0)+')" fill="'+fill+'" stroke="'+stroke+'" stroke-width="1"/>';
+    }
+    var g = '<g>';
+    // corner stars (shared across tiles)
+    g += star(0,0,sp) + star(T,0,sp) + star(0,T,sp) + star(T,T,sp);
+    // centre star
+    g += star(T/2,T/2,sp);
+    // edge-midpoint diamonds (link pieces)
+    g += star(T/2,0,dp,22.5) + star(0,T/2,dp,22.5) + star(T,T/2,dp,22.5) + star(T/2,T,dp,22.5);
+    g += '</g>';
+    return g;
+  }
+  var palettes = {
+    hero: {id:"pf-hero", fill:"none", stroke:"rgba(14,90,80,.5)"},
+    dark: {id:"pf-dark", fill:"none", stroke:"rgba(216,164,58,.9)"}
+  };
+  document.querySelectorAll("[data-star]").forEach(function(el,i){
+    var key = el.getAttribute("data-star");
+    var p = Object.assign({}, palettes[key]||palettes.hero);
+    p.id = p.id + "-" + i;
+    buildField(el, p);
+  });
+
+  /* ---- mobile menu ---- */
+  var btn = document.getElementById("menuBtn");
+  var links = document.getElementById("links");
+  btn.addEventListener("click", function(){
+    var open = links.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open? "true":"false");
+  });
+  links.addEventListener("click", function(e){
+    if(e.target.closest("a")){ links.classList.remove("open"); btn.setAttribute("aria-expanded","false"); }
+  });
+
+  /* ---- scroll reveal ---- */
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var items = document.querySelectorAll(".reveal");
+  if(reduce || !("IntersectionObserver" in window)){
+    items.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {threshold:.14, rootMargin:"0px 0px -40px 0px"});
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---- year ---- */
+  document.getElementById("yr").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
